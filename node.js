@@ -3,7 +3,7 @@ const showEl1 = document.getElementById("show-el1")
 const showEl2 = document.getElementById("show-el2")
 const dashLeft = document.getElementById("dashL")
 const dashRight = document.getElementById("dashR")
-            
+             
 const startBtn = document.getElementById("start-btn")
 const resetBtn = document.getElementById("reset-btn")
 const add1OneBtn = document.getElementById("add1One-btn")
