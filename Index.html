@@ -1,0 +1,50 @@
+ <html>
+	<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Simple basketball scoreboard built with HTML, CSS and Javescript">
+        <meta name="author" content="Fakhar E Alam">
+        <title>Scoreboard</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+    	<div class="main">
+        	<div class="board-btn">
+            	<div class="board">
+                	<div class="section">
+                    	<h1>HOME</h1>
+                        <div class="display">
+                        	<p id="show-el1"></p>
+                        </div>
+                        <div class="add-btn">
+                        	<button id="add1One-btn" onclick="add1One()">+1</button>
+                            <button id="add1Two-btn" onclick="add1Two()">+2</button>
+                            <button id="add1Three-btn" onclick="add1Three()">+3</button>
+                        </div>
+                    </div>
+                    <div class="section">
+                    	<h1>GUEST</h1>
+                        <div class="display">
+                        	<p id="show-el2"></p>
+                        </div>
+                        <div class="add-btn">
+                        	<button id="add2One-btn" onclick="add2One()">+1</button>
+                            <button id="add2Two-btn" onclick="add2Two()">+2</button>
+                            <button id="add2Three-btn" onclick="add2Three()">+3</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn">
+                	<button id="reset-btn" onclick="reset()">Reset/Stop</button>
+                    <button id="start-btn" onclick="startStop()">Start</button>
+                </div>
+            </div>
+            <div class="timer">
+            	<h3 id="dashL">---</h3>
+                <p id="show-timer"></p>
+                <h3 id="dashR">---</h3>
+            </div>
+        </div>
+    	<script src="node.js"></script>
+    </body>
+</html>

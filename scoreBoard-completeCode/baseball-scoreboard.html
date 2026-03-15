@@ -1,0 +1,336 @@
+<html>
+	<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Simple basketball scoreboard built with HTML, CSS and Javescript">
+        <meta name="author" content="Fakhar E Alam">
+        <title>Scoreboard</title>
+        <link rel="stylesheet" href="style.css">
+    	<style>
+        	.main {
+            	position:relative;
+            	width:600px;
+                height:560px;
+            	margin:10px auto;
+                display:flex;
+                justify-content:center;
+                flex-direction:column;
+                align-items:center;
+                border:4px dashed #bdbdbd;
+                background: #f7f7f7;
+                border-radius:20px;
+                gap:10px;
+                padding:10px;
+            }
+           
+            .board-btn {
+            	display:flex;
+                justify-content:center;
+                flex-direction:column;
+                align-items:center;
+                position:relative;
+                height:100%;
+                width:600px;
+                border-radius:15px;
+                box-shadow: 0 0 5px grey;
+                transition: transform 0.3s ease;
+            }
+            
+            .board-btn:hover {
+                //transform: translateY(-3px);
+                transform: scale(1.005);
+            }
+            .board {
+            	display:flex;
+                justify-content:center;
+                flex-direction:row;
+                align-items:center;
+                gap:20px;
+                position:relative;
+                height:100%;
+                width:100%;
+                text-align:center;
+            }
+            .board .section {
+            	display:flex;
+                justify-content:start;
+                flex-direction:column;
+                align-items:center;
+                gap:5px;
+                position:relative;
+                height:100%;
+                width:100%;
+            }
+            .board .section .display {
+            	width:200px;
+                height:180px;
+                background: #2f2f2f;
+                margin-bottom:40px;
+                font-size:20px;
+                border-radius:10px;
+               transition: transform 0.3s ease;
+            }
+            .display:hover {
+                //transform: translateY(-3px);
+                transform: scale(1.02);
+            }
+            .display p, .timer #show-timer, .timer h3{
+                color: darkgrey;
+                transition: color 0.3s ease, transform 0.2s ease;
+            }
+                      /* ACTIVE STATE */
+            .active {
+                color: white !important;
+            }
+            .display #show-el1, #show-el2 {
+            	margin:30px auto;
+                font-size:100px;
+            }
+            .board .section .add-btn {
+            	display:flex;
+                justify-content:space-between;
+                flex-direction:row;
+                align-items:center;
+                position:relative;
+                height:50px;
+                width:230px;
+            }
+            .add-btn button{
+            	position:relative;
+                height:100%;
+                width:55px;
+                border-radius:10px;
+                font-size:22px;
+                font-weight:bold;
+                transition: transform 0.3s ease, box-shadow 0.5s ease;
+            }
+            .add-btn button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 2px 2px #777777ff;
+                //transform: scale(1.08);
+            }
+            .add-btn button:active {
+                transform: translateY(3px);
+                box-shadow:0 0 3px #777777ff;
+            }
+            .btn {
+            	position:relative;
+                height:120px;
+                width:100%;
+                display:flex;
+                justify-content:center;
+                flex-direction:row;
+                align-items:center;
+                gap:25px;
+            }
+            .btn button {
+            	position:relative;
+                height:70px;
+                width:270px;
+                border-radius:10px;
+                font-size:27px;
+                font-weight:bold;
+                transition: transform 0.3s ease, box-shadow 0.5s ease;
+            }
+            .btn button:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 3px 5px #777777ff;
+                //transform: scale(1.08);
+            }
+            .btn button:active {
+                transform: translateY(4px);
+                box-shadow:0 0px 3px #777777ff;
+            }
+            .timer {
+            	position:relative;
+                height:70px;
+                width:100%;
+                background: #2f2f2f;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                gap:20px;
+                border-radius:15px;   
+                transition: transform 0.4s ease;
+            }
+            .timer h3 {
+                font-size:25px;
+            }
+            .timer:hover {
+                //transform: translateY(-3px);
+                transform: scale(1.01);
+            }
+            .timer #show-timer {
+            	font-size:50px;
+                transform: none;
+                text-shadow:0 0 10px rgba(0,255,156,0.6);
+            }
+        </style>
+    </head>
+    <body>
+    	<div class="main">
+        	<div class="board-btn">
+            	<div class="board">
+                	<div class="section">
+                    	<h1>HOME</h1>
+                        <div class="display">
+                        	<p id="show-el1"></p>
+                        </div>
+                        <div class="add-btn">
+                        	<button id="add1One-btn" onclick="add1One()">+1</button>
+                            <button id="add1Two-btn" onclick="add1Two()">+2</button>
+                            <button id="add1Three-btn" onclick="add1Three()">+3</button>
+                        </div>
+                    </div>
+                    <div class="section">
+                    	<h1>GUEST</h1>
+                        <div class="display">
+                        	<p id="show-el2"></p>
+                        </div>
+                        <div class="add-btn">
+                        	<button id="add2One-btn" onclick="add2One()">+1</button>
+                            <button id="add2Two-btn" onclick="add2Two()">+2</button>
+                            <button id="add2Three-btn" onclick="add2Three()">+3</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn">
+                	<button id="reset-btn" onclick="reset()">Reset/Stop</button>
+                    <button id="start-btn" onclick="startStop()">Start</button>
+                </div>
+            </div>
+            <div class="timer">
+            	<h3 id="dashL">---</h3>
+                <p id="show-timer"></p>
+                <h3 id="dashR">---</h3>
+            </div>
+        </div>
+    	<script>
+        	const showTimer = document.getElementById("show-timer")
+            const showEl1 = document.getElementById("show-el1")
+            const showEl2 = document.getElementById("show-el2")
+            const dashLeft = document.getElementById("dashL")
+            const dashRight = document.getElementById("dashR")
+            
+            const startBtn = document.getElementById("start-btn")
+            const resetBtn = document.getElementById("reset-btn")
+            const add1OneBtn = document.getElementById("add1One-btn")
+            const add1TwoBtn = document.getElementById("add1Two-btn")
+            const add1ThreeBtn = document.getElementById("add1Three-btn")
+            
+            const add2OneBtn = document.getElementById("add2One-btn")
+            const add2TwoBtn = document.getElementById("add2Two-btn")
+            const add2ThreeBtn = document.getElementById("add2Three-btn")
+            
+            resetBtn.disabled = true
+            startBtn.disabled = false
+            
+            add1OneBtn.disabled = true
+            add1TwoBtn.disabled = true
+            add1ThreeBtn.disabled = true
+            
+            add2OneBtn.disabled = true
+            add2TwoBtn.disabled = true
+            add2ThreeBtn.disabled = true
+            	
+                showTimer.textContent = "00:00"
+                showEl1.textContent = 0
+                showEl2.textContent = 0
+            
+            let count1 = 0
+            let count2 = 0
+            
+            
+            function add1One() {
+            	count1 += 1
+                showEl1.textContent = count1
+            }
+            function add1Two() {
+            	count1 += 2
+                showEl1.textContent = count1
+            }
+            function add1Three() {
+            	count1 += 3
+                showEl1.textContent = count1
+            }
+            
+            
+            function add2One() {
+            	count2 += 1
+                showEl2.textContent = count2
+            }
+            function add2Two() {
+            	count2 += 2
+                showEl2.textContent = count2
+            }
+            function add2Three() {
+            	count2 += 3
+                showEl2.textContent = count2
+            }
+            
+            let seconds = 0
+            let timer;
+            
+            function reset() {
+
+                showEl1.textContent = 0
+                showEl2.textContent = 0
+                seconds = 0
+                showTimer.textContent = "00:00"
+                clearInterval(timer);
+                showTimer.classList.remove("active")
+    			showEl1.classList.remove("active")
+    			showEl2.classList.remove("active")
+                dashLeft.classList.remove("active")
+                dashRight.classList.remove("active")
+                
+                resetBtn.disabled = true
+            
+                add1OneBtn.disabled = true
+                add1TwoBtn.disabled = true
+                add1ThreeBtn.disabled = true
+
+                add2OneBtn.disabled = true
+                add2TwoBtn.disabled = true
+                add2ThreeBtn.disabled = true
+                startBtn.disabled = false
+
+            }
+
+            function startStop() {
+            	
+                showTimer.classList.add("active")
+    			showEl1.classList.add("active")
+    			showEl2.classList.add("active")
+                dashLeft.classList.add("active")
+                dashRight.classList.add("active")
+
+                resetBtn.disabled = false
+
+                add1OneBtn.disabled = false
+                add1TwoBtn.disabled = false
+                add1ThreeBtn.disabled = false
+
+                add2OneBtn.disabled = false
+                add2TwoBtn.disabled = false
+                add2ThreeBtn.disabled = false
+                showEl1.textContent = 0
+                showEl2.textContent = 0
+                
+                timer = setInterval(updateTimer, 100);
+                
+                startBtn.disabled = true
+            
+            }
+
+            function updateTimer() {
+                seconds++;
+                let minutes = Math.floor(seconds / 60);
+                let remainingSeconds = seconds % 60;
+                minutes = String(minutes).padStart(2, "0");
+                remainingSeconds = String(remainingSeconds).padStart(2, "0");
+                showTimer.textContent = `${minutes}:${remainingSeconds}`;
+            }
+        </script>
+    </body>
+</html>
