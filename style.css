@@ -12,12 +12,6 @@
                 border-radius:20px;
                 gap:10px;
                 padding:10px;
-                transition: transform 0.3s ease;
-            }
-            
-            .main:hover {
-                //transform: translateY(-3px);
-                transform: scale(1.005);
             }
            
             .board-btn {
